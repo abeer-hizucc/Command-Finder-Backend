@@ -10,6 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ROLES } from './command.data';
+import { Prisma } from '@prisma/client';
 import { CommandService } from './command.service';
 import { CreateCommandDTO, UpdateCommandDTO } from './command.dto';
 
@@ -29,13 +30,13 @@ export class CommandController {
     return this.commandService.findByCommandName(name);
   }
   @Post()
-  create(@Body() createCommandDTO: CreateCommandDTO) {
+  create(@Body() createCommandDTO: Prisma.CommandsCreateInput) {
     return this.commandService.create(createCommandDTO);
   }
   @Patch('name/:name')
   updateByName(
     @Param('name') name: string,
-    @Body() updateCommandDTO: UpdateCommandDTO,
+    @Body() updateCommandDTO: Prisma.CommandsUpdateInput,
   ) {
     return this.commandService.updateByName(name, updateCommandDTO);
   }
