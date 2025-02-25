@@ -12,7 +12,8 @@ import {
 import { ROLES } from './command.data';
 import { Prisma } from '@prisma/client';
 import { CommandService } from './command.service';
-import { CreateCommandDTO, UpdateCommandDTO } from './command.dto';
+import { Throttle } from '@nestjs/throttler';
+
 
 @Controller('command')
 export class CommandController {
